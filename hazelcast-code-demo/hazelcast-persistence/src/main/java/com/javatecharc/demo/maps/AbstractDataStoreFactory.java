@@ -2,6 +2,7 @@ package com.javatecharc.demo.maps;
 
 import com.hazelcast.internal.serialization.Data;
 import com.hazelcast.map.MapLoader;
+import com.hazelcast.map.MapStore;
 import com.hazelcast.map.impl.mapstore.MapDataStore;
 import com.hazelcast.map.impl.mapstore.writebehind.TxnReservedCapacityCounter;
 import com.hazelcast.map.impl.mapstore.writebehind.entry.DelayedEntry;
@@ -9,7 +10,7 @@ import com.hazelcast.map.impl.mapstore.writebehind.entry.DelayedEntry;
 import java.util.Collection;
 import java.util.UUID;
 
-public abstract class AbstractDataStoreFactory<K, V> implements MapDataStore<K, V>, MapLoader<K, V> {
+public abstract class AbstractDataStoreFactory<K, V> implements MapDataStore<K, V>, MapLoader<K, V>, MapStore<K, V> {
 
     @Override
     public V add(K k, V v, long l, long l1, UUID uuid) {
