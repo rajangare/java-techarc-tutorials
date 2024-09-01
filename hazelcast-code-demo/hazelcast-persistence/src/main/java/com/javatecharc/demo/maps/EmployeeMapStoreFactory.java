@@ -29,14 +29,14 @@ public class EmployeeMapStoreFactory extends AbstractDataStoreFactory<Integer, E
         String query = "SELECT EMPID FROM EMPLOYEE";
 
         List<Integer> empIds = new ArrayList<>();
-        try(Connection connection = pool.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            ResultSet resultSet = preparedStatement.executeQuery()) {
+        try (Connection connection = pool.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
             while (resultSet.next()) {
                 empIds.add(resultSet.getInt(1));
             }
         } catch (SQLException exception) {
-            throw new DatabaseSQLException("Error on load all keys : "+exception);
+            throw new DatabaseSQLException("Error on load all keys : " + exception);
         }
 
         return empIds;
@@ -46,9 +46,9 @@ public class EmployeeMapStoreFactory extends AbstractDataStoreFactory<Integer, E
     public Employee load(Integer empId) {
         String query = "SELECT EMPID, FIRSTNAME, LASTNAME, EMAIL, SALARY FROM EMPLOYEE WHERE EMPID=?";
         Employee.EmployeeBuilder employeeBuilder = Employee.builder();
-        try(Connection connection = pool.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            ) {
+        try (Connection connection = pool.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ) {
             preparedStatement.setInt(1, empId);
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -61,7 +61,7 @@ public class EmployeeMapStoreFactory extends AbstractDataStoreFactory<Integer, E
                         .salary(resultSet.getDouble(5));
             }
         } catch (SQLException exception) {
-            throw new DatabaseSQLException("Error on load key : "+exception);
+            throw new DatabaseSQLException("Error on load key : " + exception);
         }
 
         return employeeBuilder.build();
@@ -74,5 +74,43 @@ public class EmployeeMapStoreFactory extends AbstractDataStoreFactory<Integer, E
         List<Integer> employees = (List<Integer>) collection;
 
         return employees.stream().collect(Collectors.toMap(id -> id, id -> load(id).toString()));
+    }
+
+    @Override
+    public void store(Integer integer, Employee employee) {
+        String storeQuery = "INSERT INTO EMPLOYEE(EMPID, FIRSTNAME, LASTNAME, EMAIL, SALARY) VALUES(?, ?, ?, ?, ?)";
+        try (Connection connection = pool.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(storeQuery)) {
+            preparedStatement.setInt(1, employee.getEmpId());
+            preparedStatement.setString(2, employee.getFirstName());
+            preparedStatement.setString(3, employee.getLastName());
+            preparedStatement.setString(4, employee.getEmail());
+            preparedStatement.setDouble(5, employee.getSalary());
+
+            preparedStatement.executeUpdate();
+
+        } catch (Exception exception) {
+            log.error("Exception : {}", exception);
+            throw new DatabaseSQLException(exception.getMessage());
+        }
+
+    }
+
+    @Override
+    public void storeAll(Map<Integer, Employee> map) {
+        map.forEach((k, v) -> {
+            store(k, v);
+        });
+
+    }
+
+    @Override
+    public void delete(Integer integer) {
+
+    }
+
+    @Override
+    public void deleteAll(Collection<Integer> collection) {
+
     }
 }
