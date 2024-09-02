@@ -3,6 +3,7 @@ package com.javatecharc.demo;
 import com.hazelcast.client.HazelcastClient;
 import com.hazelcast.client.config.ClientConfig;
 import com.hazelcast.client.config.ClientNetworkConfig;
+import com.hazelcast.collection.IQueue;
 import com.hazelcast.config.SSLConfig;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.map.IMap;
@@ -38,5 +39,9 @@ public class HazelcastClientDemo {
         testMap.put("1", "JavaTechARC3i");
         System.out.println("Size add add : "+testMap.size());
         System.out.println("Map Data : "+testMap);
+
+        IQueue<String> iQueue = hazelcastInstance.getQueue("employee_queue");
+        iQueue.add("Test");
+        iQueue.remove("Test");
     }
 }
