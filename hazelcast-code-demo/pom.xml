@@ -13,6 +13,7 @@
         <module>hazelcast-persistence</module>
         <module>hazelcast-rdbms-client</module>
 		<module>hazelcast-client</module>
+		<module>hazelcast-spring-boot</module>
     </modules>
 
     <properties>
