@@ -17,7 +17,7 @@ public class HazelcastDemoService {
      * Consume this demo method from controller or any other layer as required
      */
     public String hazelcastDemo() {
-        IMap<String, String> testMap = hazelcastInstance.getMap("test-map");
+        IMap<String, String> testMap = hazelcastInstance.getMap("javaTechARC_Map");
         System.out.println("Size before add : "+testMap.size());
 
         testMap.put("1", "JavaTechARC3i");
