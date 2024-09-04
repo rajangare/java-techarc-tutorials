@@ -20,4 +20,9 @@ public class DemoController {
     public ResponseEntity<?> demo() {
         return new ResponseEntity<>(hazelcastDemoService.hazelcastDemo(), HttpStatus.OK);
     }
+
+    @GetMapping("/demo")
+    public ResponseEntity<?> demoCacheable() {
+        return new ResponseEntity<>(hazelcastDemoService.cacheableDemo("demKey"), HttpStatus.OK);
+    }
 }
