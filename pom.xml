@@ -11,6 +11,7 @@
 
     <modules>
         <module>java-tutorials</module>
+        <module>antlr-demo</module>
         <module>hazelcast-code-demo</module>
     </modules>
 
