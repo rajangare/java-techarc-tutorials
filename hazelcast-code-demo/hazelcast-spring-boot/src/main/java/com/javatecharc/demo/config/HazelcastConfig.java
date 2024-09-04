@@ -3,6 +3,8 @@ package com.javatecharc.demo.config;
 import com.hazelcast.client.HazelcastClient;
 import com.hazelcast.client.config.ClientConfig;
 import com.hazelcast.client.config.ClientNetworkConfig;
+import com.hazelcast.config.Config;
+import com.hazelcast.config.MapConfig;
 import com.hazelcast.config.SSLConfig;
 import com.hazelcast.core.HazelcastInstance;
 import org.springframework.context.annotation.Bean;
@@ -12,7 +14,7 @@ import java.util.List;
 import java.util.Properties;
 
 @Configuration
-public class HazelcastInstanceConfig {
+public class HazelcastConfig {
 
     @Bean
     public HazelcastInstance hazelcastInstance() {
@@ -36,5 +38,19 @@ public class HazelcastInstanceConfig {
         config.setInstanceName("javaTechARC");
 
         return HazelcastClient.newHazelcastClient(config);
+    }
+
+    @Bean
+    public Config mapConfig() {
+        Config config = new Config();
+
+        // Configure a map with a specific name
+        MapConfig mapConfig = new MapConfig();
+        mapConfig.setName("javaTechARC_Map");
+        mapConfig.setTimeToLiveSeconds(300); // TTL Config
+
+        config.addMapConfig(mapConfig);
+
+        return config;
     }
 }
