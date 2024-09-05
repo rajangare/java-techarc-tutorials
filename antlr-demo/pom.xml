@@ -105,6 +105,26 @@
             </plugin>
 
             <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>javacc-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>jjtree</goal> <!-- If using JJTree -->
+                            <goal>javacc</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                    </execution>
+                </executions>
+                <configuration>
+                    <inputDirectory>src/main/javacc</inputDirectory> <!-- Where your .jj file is located -->
+                    <outputDirectory>${project.build.directory}/generated-sources/javacc</outputDirectory> <!-- Where generated sources will be placed -->
+                    <grammar>JavaCCSQLParser.jj</grammar> <!-- Your SQL grammar file -->
+                </configuration>
+            </plugin>
+
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
