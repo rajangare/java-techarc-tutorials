@@ -1,8 +1,12 @@
 package com.javatecharc.demo.serilization;
 
+import com.hazelcast.nio.ObjectDataInput;
+import com.hazelcast.nio.ObjectDataOutput;
+import com.hazelcast.nio.serialization.IdentifiedDataSerializable;
+
 import java.io.*;
 
-public class EmployeeExternalizable implements Externalizable {
+public class EmployeeExternalizable implements IdentifiedDataSerializable {
     private static final long serialVersionUID = 1L;
     private String name;
     private String email;
@@ -13,18 +17,6 @@ public class EmployeeExternalizable implements Externalizable {
         this.name = name;
         this.email = email;
         this.phoneNo = phoneNo;
-    }
-
-    @Override
-    public void writeExternal(ObjectOutput out) throws IOException {
-        System.out.println("Serializing....");
-        out.writeUTF(name);
-    }
-
-    @Override
-    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        System.out.println("Deserializaing....");
-        this.name = in.readUTF();
     }
 
     public String getName() {
@@ -58,5 +50,27 @@ public class EmployeeExternalizable implements Externalizable {
                 ", email='" + email + '\'' +
                 ", phoneNo='" + phoneNo + '\'' +
                 '}';
+    }
+
+    @Override
+    public int getFactoryId() {
+        return 0;
+    }
+
+    @Override
+    public int getClassId() {
+        return 0;
+    }
+
+    @Override
+    public void writeData(ObjectDataOutput objectDataOutput) throws IOException {
+        System.out.println("Serializing....");
+        objectDataOutput.writeUTF(name);
+    }
+
+    @Override
+    public void readData(ObjectDataInput objectDataInput) throws IOException {
+        System.out.println("Deserializaing....");
+        this.name = objectDataInput.readUTF();
     }
 }
