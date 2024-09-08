@@ -1,0 +1,49 @@
+PARSER_BEGIN(JavaCCSQLParser)
+
+public class JavaCCSQLParser {
+    public static void main(String args[]) throws ParseException {
+        SQLParser parser = new SQLParser(System.in);
+        parser.Statement();
+        System.out.println("SQL parsed successfully.");
+    }
+}
+
+PARSER_END(JavaCCSQLParser)
+
+SKIP: {
+    " " | "\t" | "\n" | "\r"
+}
+
+TOKEN: {
+    < SELECT: "SELECT" > |
+    < FROM: "FROM" > |
+    < WHERE: "WHERE" > |
+    < AND: "AND" > |
+    < OR: "OR" > |
+    < IDENTIFIER: (["a"-"z", "A"-"Z", "_"])+ > |
+    < NUMBER: (["0"-"9"])+ >
+}
+
+void Statement(): {} {
+    SelectStatement() <EOF>
+}
+
+void SelectStatement(): {} {
+    <SELECT> ColumnList() <FROM> <IDENTIFIER> (WhereClause())?
+}
+
+void ColumnList(): {} {
+    <IDENTIFIER> ("," <IDENTIFIER>)*
+}
+
+void WhereClause(): {} {
+    <WHERE> Condition() (LogicalOperator() Condition())*
+}
+
+void Condition(): {} {
+    <IDENTIFIER> "=" <NUMBER>
+}
+
+void LogicalOperator(): {} {
+    (<AND> | <OR>)
+}
