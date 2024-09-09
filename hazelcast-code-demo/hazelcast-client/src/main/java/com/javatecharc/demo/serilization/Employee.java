@@ -1,43 +1,26 @@
 package com.javatecharc.demo.serilization;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.Serializable;
 
+@Getter
+@Setter
 public class Employee implements Serializable {
     private static final long serialVersionUID = 1L;
+    private int empId;
     private String name;
     private String email;
     private String phoneNo;
 
-    public Employee(String name, String email, String phoneNo) {
-        super();
+    public Employee(int empId, String name, String email, String phoneNo) {
+        this.empId = empId;
         this.name = name;
         this.email = email;
         this.phoneNo = phoneNo;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhoneNo() {
-        return phoneNo;
-    }
-
-    public void setPhoneNo(String phoneNo) {
-        this.phoneNo = phoneNo;
-    }
 
     @Override
     public String toString() {
