@@ -12,7 +12,7 @@ public class SerializableExample {
         HazelcastInstance hazelcast = Hazelcast.newHazelcastInstance();
 
         IMap<Employee, String> employeeOwners = hazelcast.getMap("empDataMap");
-        Employee employee = new Employee("JavaTechARC 3i", "javatecharc3i@gmail.com", "9830283");
+        Employee employee = new Employee(123, "JavaTechARC 3i", "javatecharc3i@gmail.com", "9830283");
 
         System.out.println("Serializing key-value and add to map");
         employeeOwners.put(employee, "Demo Test");
