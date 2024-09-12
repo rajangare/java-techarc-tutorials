@@ -34,6 +34,9 @@ public class HazelcastClientDemo {
         HazelcastInstance hazelcastInstance = HazelcastClient.newHazelcastClient(config);
 
         IMap<String, String> testMap = hazelcastInstance.getMap("test-map");
+
+        testMap.addEntryListener(new DemoEntryListener(), true);
+
         System.out.println("Size before add : "+testMap.size());
 
         testMap.put("1", "JavaTechARC3i");
