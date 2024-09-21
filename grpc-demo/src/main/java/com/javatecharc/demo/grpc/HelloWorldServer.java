@@ -1,6 +1,6 @@
-package com.javatecharc.demo;
+package com.javatecharc.demo.grpc;
 
-import com.javatecharc.demo.service.HelloWorldService;
+import com.javatecharc.demo.grpc.service.HelloWorldService;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 
