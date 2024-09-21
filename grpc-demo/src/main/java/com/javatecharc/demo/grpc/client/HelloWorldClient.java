@@ -1,4 +1,4 @@
-package com.javatecharc.demo.client;
+package com.javatecharc.demo.grpc.client;
 
 import com.javatecharc.demo.proto.HelloRequest;
 import com.javatecharc.demo.proto.HelloResponse;
@@ -14,7 +14,7 @@ public class HelloWorldClient {
 
         HelloWorldGrpc.HelloWorldBlockingStub stub = HelloWorldGrpc.newBlockingStub(channel);
 
-        HelloResponse response = stub.helloJavaTechArc(HelloRequest.newBuilder().setName("Java TechARC 3i...").build());
+        HelloResponse response = stub.helloJavaTechArc(HelloRequest.newBuilder().setName("Java TechARC 3i").build());
         System.out.println("Response from server: " + response.getMessage());
 
         channel.shutdown();
