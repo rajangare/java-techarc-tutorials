@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.javatecharc.grpc.proto.stock";
+option java_outer_classname = "StockPriceProto";
+option optimize_for = SPEED;
+
+service StockPriceService {
+    rpc StreamStockPrices(StockRequest) returns (stream StockPriceResponse);
+}
+
+message StockRequest {
+    string stock_symbol = 1;
+}
+
+message StockPriceResponse {
+    string stock_symbol = 1;
+    double price = 2;
+    string timestamp = 3;
+}
