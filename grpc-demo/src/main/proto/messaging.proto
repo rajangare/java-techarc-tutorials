@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.javatecharc.grpc.proto.message";
+option java_outer_classname = "MessagingProto";
+option optimize_for = SPEED;
+
+service MessagingService {
+    rpc SendMessage(stream SampleMessage) returns (stream SampleMessage);
+}
+
+message SampleMessage {
+    string sender = 1;
+    string message = 2;
+    string timestamp = 3;
+}
