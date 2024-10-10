@@ -1,4 +1,4 @@
-package com.javatecharc.demo;
+package com.javatecharc.demo.predicate;
 
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
@@ -39,7 +39,8 @@ public class SQLPredicateExample {
         Collection<Employee> regex = employeeMap.values(Predicates.sql("firstName REGEX '^[A-Z][a-z]+$'"));
         System.out.println(regex);
 
-
+        // Shutdown Hazelcast instance
+        hazelcastInstance.shutdown();
 
     }
 }
