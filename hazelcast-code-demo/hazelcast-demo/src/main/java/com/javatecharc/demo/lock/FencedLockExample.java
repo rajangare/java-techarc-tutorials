@@ -5,33 +5,37 @@ import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.cp.lock.FencedLock;
 
 public class FencedLockExample {
+
+
     public static void main(String[] args) {
         // Start a Hazelcast instance
         HazelcastInstance hazelcastInstance = Hazelcast.newHazelcastInstance();
 
-        // Obtain a FencedLock instance
-        FencedLock lock = hazelcastInstance.getCPSubsystem().getLock("my-distributed-lock");
+        // Get a FencedLock from the CP Subsystem
+        FencedLock fencedLock = hazelcastInstance.getCPSubsystem().getLock("java-tech-arc-lock-demo");
 
-        // Acquire the lock
-        long fencingToken = lock.lockAndGetFence();
-        System.out.println("Lock acquired with fencing token: " + fencingToken);
-
+        // Acquire the lock and get the fencing token
+        long token = fencedLock.lockAndGetFence();
+        System.out.println(fencedLock.getServiceName());
         try {
-            // Critical section: protected by the lock
-            performCriticalOperation();
+            System.out.println("Lock acquired with token: " + token);
+
+            // Critical section of the code
+            performCriticalOperation(token);
 
         } finally {
             // Release the lock
-            lock.unlock();
-            System.out.println("Lock released");
+            fencedLock.unlock();
+            System.out.println("Lock released.");
         }
 
-        // Shutdown Hazelcast instance
+        // Shutdown the Hazelcast instance
         hazelcastInstance.shutdown();
     }
 
-    public static void performCriticalOperation() {
-        // Simulate some work
-        System.out.println("Performing a critical operation...");
+    private static void performCriticalOperation(long token) {
+        // Example of a critical operation that uses the fencing token for validation
+        System.out.println("Performing a critical operation with token: " + token);
+        // Your business logic goes here
     }
 }
