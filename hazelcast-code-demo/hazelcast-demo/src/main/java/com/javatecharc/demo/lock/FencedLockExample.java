@@ -5,8 +5,6 @@ import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.cp.lock.FencedLock;
 
 public class FencedLockExample {
-
-
     public static void main(String[] args) {
         // Start a Hazelcast instance
         HazelcastInstance hazelcastInstance = Hazelcast.newHazelcastInstance();
