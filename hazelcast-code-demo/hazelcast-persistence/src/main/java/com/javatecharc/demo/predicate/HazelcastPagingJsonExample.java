@@ -1,4 +1,4 @@
-package com.javatecharc.demo.jet;
+package com.javatecharc.demo.predicate;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
