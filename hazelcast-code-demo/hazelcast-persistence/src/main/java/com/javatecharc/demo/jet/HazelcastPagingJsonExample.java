@@ -17,7 +17,7 @@ import com.javatecharc.demo.model.Student;
 import java.util.Collection;
 import java.util.List;
 
-public class HazelcastPagingJoinExample {
+public class HazelcastPagingJsonExample {
 
     static HazelcastInstance hazelcastInstance;
     static IMap<Integer, HazelcastJsonValue> studentMap;
