@@ -98,10 +98,34 @@ public class EmployeeMapStoreFactory extends AbstractDataStoreFactory<Integer, E
 
     @Override
     public void storeAll(Map<Integer, Employee> map) {
-        map.forEach((k, v) -> {
-            store(k, v);
-        });
+        //map.forEach(this::store);
+        //or
 
+        String storeQuery = "INSERT INTO EMPLOYEE(EMPID, NAME, LASTNAME, EMAIL, SALARY) VALUES(?, ?, ?, ?, ?)";
+        try (Connection connection = pool.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(storeQuery)) {
+            map.forEach((identity, employee) -> {
+                try {
+                    preparedStatement.setInt(1, employee.getEmpId());
+                    preparedStatement.setString(2, employee.getFirstName());
+                    preparedStatement.setString(3, employee.getLastName());
+                    preparedStatement.setString(4, employee.getEmail());
+                    preparedStatement.setDouble(5, employee.getSalary());
+                } catch (SQLException e) {
+                    System.out.println(e);
+                }
+            });
+
+            int[] batchResults = preparedStatement.executeBatch();
+
+            // Handle the results if needed
+            for (int result : batchResults) {
+                //TODO: add this if needed
+            }
+        } catch (SQLException exception) {
+            log.error("Exception : {}", exception.getMessage());
+            throw new DatabaseSQLException(exception.getMessage());
+        }
     }
 
     @Override
