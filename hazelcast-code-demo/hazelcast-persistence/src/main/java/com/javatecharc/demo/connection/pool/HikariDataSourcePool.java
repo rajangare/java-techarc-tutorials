@@ -50,7 +50,7 @@ public class HikariDataSourcePool implements ConnectionPool {
                 throw new DatabaseSQLException("Ops! Hikari datasource not available.");
             }
         } catch (SQLException e) {
-            throw new DatabaseSQLException("Exception while creating database connection."+e);
+            throw new DatabaseSQLException("Exception while creating database connection." + e);
         }
     }
 }
