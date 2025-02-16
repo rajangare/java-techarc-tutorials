@@ -15,6 +15,7 @@
         <module>hazelcast-rdbms-client</module>
 		<module>hazelcast-client</module>
 		<module>hazelcast-spring-boot</module>
+        <module>hazelcast-transaction</module>
     </modules>
 
     <properties>
