@@ -16,6 +16,7 @@
 		<module>hazelcast-client</module>
 		<module>hazelcast-spring-boot</module>
         <module>hazelcast-transaction</module>
+        <module>atomikos-demo</module>
     </modules>
 
     <properties>
