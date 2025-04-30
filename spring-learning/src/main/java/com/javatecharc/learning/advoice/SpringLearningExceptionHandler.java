@@ -1,5 +1,6 @@
 package com.javatecharc.learning.advoice;
 
+import com.javatecharc.learning.exception.EmployeeNotFound;
 import com.javatecharc.learning.exception.SpringLearningException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,5 +26,9 @@ public class SpringLearningExceptionHandler {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
-
+    @ExceptionHandler(EmployeeNotFound.class)
+    public ResponseEntity<String> handleEmployeeNotFound(EmployeeNotFound e) {
+        System.out.println("EmployeeNotFound : " + e.getMessage());
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+    }
 }

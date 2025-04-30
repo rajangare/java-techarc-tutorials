@@ -1,25 +1,20 @@
 package com.javatecharc.learning.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "EMPLOYEE") // Maps the class to the EMPLOYEE table in the database.
 public class Employee {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id // Specifies the primary key of the entity.
+    @GeneratedValue(strategy = GenerationType.AUTO) // Auto-generates the primary key value.
     private Long id;
-    private String name;
-    private String department;
-    private Double salary;
 
-    public Employee(Long id, String name, String department, Double salary) {
-        this.id = id;
-        this.name = name;
-        this.department = department;
-        this.salary = salary;
-    }
+    @Column(name = "EMP_NAME") // Maps the field to the NAME column in the database.
+    private String name;
+
+    private String department;
+
+    private Double salary;
 
     public Long getId() {
         return id;
@@ -51,6 +46,16 @@ public class Employee {
 
     public void setSalary(Double salary) {
         this.salary = salary;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", department='" + department + '\'' +
+                ", salary=" + salary +
+                '}';
     }
 }
 
