@@ -21,5 +21,20 @@ server:
 
 # http://localhost:8090/swagger-ui/index.html
 
+#  http://localhost:8090/actuator
 # swagger
-
+actuator:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  swagger-ui:
+    base-url: /swagger-ui
+  health:
+    show-details: always
+    show-components: always
+  info:
+    enabled: true
+  metrics:
+    tags:
+      enabled: true
