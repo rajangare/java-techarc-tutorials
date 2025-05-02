@@ -22,7 +22,7 @@ public class EmployeeController {
         return new ResponseEntity<>(employeeMessage, HttpStatus.CREATED);
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/getById/{id}")
     public ResponseEntity<EmployeeResponse> getEmployee(@PathVariable("id") Long id) {
         EmployeeResponse employeeResponse = employeeService.getEmployeeById(id);
         return new ResponseEntity<>(employeeResponse, HttpStatus.OK);
