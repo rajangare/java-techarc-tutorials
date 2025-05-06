@@ -1,3 +1,9 @@
+info:
+  app:
+    name: Spring Learning
+    description: Demo project for Spring Boot Actuator
+    version: 1.0.0
+
 spring:
   application:
     name: spring-learning
@@ -23,18 +29,11 @@ server:
 
 #  http://localhost:8090/actuator
 # swagger
-actuator:
+management:
   endpoints:
     web:
       exposure:
-        include: "*"
-  swagger-ui:
-    base-url: /swagger-ui
-  health:
-    show-details: always
-    show-components: always
-  info:
-    enabled: true
-  metrics:
-    tags:
-      enabled: true
+        include: "*" # Expose all endpoints (e.g., health, info)
+  endpoint:
+    health:
+      show-details: always # Show detailed health information
