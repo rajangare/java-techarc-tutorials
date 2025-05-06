@@ -29,7 +29,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/getByName/{name}")
-    public ResponseEntity<EmployeeResponse> getEmployeeByName(@PathVariable("name") String name) {
+    public ResponseEntity<EmployeeResponse> getEmployeeByName(@PathVariable("name") String name, @RequestParam(required = false) String department) {
         EmployeeResponse employeeResponse = employeeService.getEmployeeByName(name);
         return new ResponseEntity<>(employeeResponse, HttpStatus.OK);
     }
