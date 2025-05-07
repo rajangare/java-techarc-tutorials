@@ -21,6 +21,10 @@ spring:
       ddl-auto: create
     show-sql: true
     database-platform: org.hibernate.dialect.H2Dialect
+  security:
+    user:
+      name: admin
+      password: admin
 
 server:
   port: 8090

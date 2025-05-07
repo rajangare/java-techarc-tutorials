@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: order-service
+
+
+server:
+  port: 8085
+
+
+
+# http://localhost:8084/swagger-ui/index.html
+
+# swagger
+
