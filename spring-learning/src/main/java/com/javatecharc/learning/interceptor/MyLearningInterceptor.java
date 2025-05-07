@@ -12,7 +12,7 @@ public class MyLearningInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         System.out.println("PreHandle: Intercepting request - " + request.getRequestURI());
 
-        String department = request.getParameter("department");
+        /*String department = request.getParameter("department");
         System.out.println(department);
 
         if (department != null && department.equals("HR")) {
@@ -20,9 +20,9 @@ public class MyLearningInterceptor implements HandlerInterceptor {
         }
 
         System.out.println("Blocking request for other than HR department");
-        response.sendError(HttpServletResponse.SC_FORBIDDEN, "Access denied for other than HR department");
+        response.sendError(HttpServletResponse.SC_FORBIDDEN, "Access denied for other than HR department");*/
 
-        return false; // Return true to continue the request, false to block it
+        return true; // Return true to continue the request, false to block it
     }
 
     @Override
