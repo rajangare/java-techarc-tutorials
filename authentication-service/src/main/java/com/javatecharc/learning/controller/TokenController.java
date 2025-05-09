@@ -16,15 +16,14 @@ public class TokenController {
     }
 
     @PostMapping("/generate")
-    public String generateToken(@RequestParam String username) {
-        Map<String, Object> claims = new HashMap<>();
-        claims.put("role", "USER");
-        return jwtTokenService.generateToken(username, claims);
+    public String generateJWTToken(@RequestHeader String username, @RequestHeader String password) {
+
+        return jwtTokenService.generateToken(username, password);
     }
 
     @GetMapping("/validate")
-    public boolean validateToken(@RequestParam String token) {
-        return jwtTokenService.validateToken(token);
+    public boolean validateToken(@RequestParam String jwtToken) {
+        return jwtTokenService.validateToken(jwtToken);
     }
 }
 

@@ -1,4 +1,4 @@
-package com.javatecharc.learning.advoice;
+package com.javatecharc.learning.advice;
 
 import com.javatecharc.learning.exception.EmployeeNotFound;
 import com.javatecharc.learning.exception.SpringLearningException;

@@ -3,12 +3,14 @@ package com.javatecharc.learning.controller;
 import com.javatecharc.learning.model.EmployeeRequest;
 import com.javatecharc.learning.model.EmployeeResponse;
 import com.javatecharc.learning.service.EmployeeService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/employee")
+@SecurityRequirement(name = "Authorization")
 public class EmployeeController {
     private final EmployeeService employeeService;
 
@@ -29,7 +31,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/getByName/{name}")
-    public ResponseEntity<EmployeeResponse> getEmployeeByName(@PathVariable("name") String name, @RequestParam(required = false) String department) {
+    public ResponseEntity<EmployeeResponse> getEmployeeByName(@PathVariable("name") String name) {
         EmployeeResponse employeeResponse = employeeService.getEmployeeByName(name);
         return new ResponseEntity<>(employeeResponse, HttpStatus.OK);
     }
