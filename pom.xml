@@ -17,6 +17,8 @@
         <module>click-bot</module>
 		<module>spring-learning</module>
         <module>spring-boot-grpc</module>
+        <module>grpc-protobuff-demo</module>
+        <module>spring-boot-grpc-client</module>
     </modules>
 
     <properties>
