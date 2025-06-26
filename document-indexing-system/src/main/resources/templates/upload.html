@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Document</title>
+</head>
+<body>
+<h1>Upload Document</h1>
+<form method="POST" enctype="multipart/form-data" th:action="@{/upload}">
+    <label>Document:</label>
+    <input type="file" name="file" required><br><br>
+
+    <label>Department:</label>
+    <input type="text" name="department" placeholder="e.g., HR, Legal, IT" required><br><br>
+
+    <button type="submit">Upload</button>
+</form>
+
+<p th:if="${message}" th:text="${message}"></p>
+</body>
+</html>

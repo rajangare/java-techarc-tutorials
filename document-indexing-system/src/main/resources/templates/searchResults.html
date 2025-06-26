@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Results</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>Search Results</h1>
+
+<div th:if="${#lists.isEmpty(results)}">
+    <p>No documents found for the given search query.</p>
+</div>
+
+<ul th:if="${not #lists.isEmpty(results)}">
+    <li th:each="doc : ${results}">
+        <strong th:text="${doc.documentName}">Document Name</strong> -
+        <span th:text="${doc.department}">Department</span>
+        <p th:text="${doc.contentTags}">Content Tags</p>
+    </li>
+</ul>
+
+<a th:href="@{/search}">Back to Search</a>
+</body>
+</html>

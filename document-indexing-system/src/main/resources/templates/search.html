@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Document Search</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>Search Documents</h1>
+
+<form method="GET" th:action="@{/search}">
+    <input type="text" name="query" placeholder="Search..." required />
+    <button type="submit">Search</button>
+</form>
+
+<!-- Optional: Show search results if present -->
+<div th:if="${results != null}">
+    <h2>Search Results</h2>
+    <ul>
+        <li th:each="result : ${results}" th:text="${result}">Sample result</li>
+    </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,10 @@
+Title: Enterprise Document Data Model and Indexing Architecture
+
+Problem Statement:
+A scalable data architecture that creates a unified indexing mechanism for 10 billion digitalized documents across the bank, establishing standardized metadata schemas and search capabilities. The system provides enterprise-wide document discoverability through intelligent indexing that supports cross-functional access while maintaining security and compliance requirements.
+
+Benefits
+Efficiency
+
+Acceptance Criteria:
+Demonstrate a scalable document indexing architecture that can process and index at least 100 sample documents (representing the scaled-down version of 10 billion), establish a standardized metadata schema with essential fields like document type, creation date, department, and content tags, and provide intelligent search capabilities through both keyword and semantic search functionality. The system must successfully implement a unified indexing mechanism using technologies like Elasticsearch or similar search engines, demonstrate cross-functional document discoverability.. The solution must provide a web-based search interface that returns relevant results, support multiple document formats (PDF, Word, Excel), and generate automated metadata extraction for uploaded documents.

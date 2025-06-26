@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: document-indexing-system
+
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    servlet:
+      multipart:
+        max-file-size: 10MB
+        max-request-size: 10MB
+
+server:
+  port: 8084
+
+
+
+# http://localhost:8084/swagger-ui/index.html
+
+# swagger
+
